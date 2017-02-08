@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PAMIR &mdash; CBAR 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="CBAR 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Datasets" href="datasets.html"/>
+        <link rel="prev" title="LoretaWARP" href="loreta.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CBAR
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Content</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loreta.html">LoretaWARP model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PAMIR model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crossval.html">Model evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">CBAR</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>PAMIR</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/pamir.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="module-cbar.pamir">
+<span id="pamir"></span><h1>PAMIR<a class="headerlink" href="#module-cbar.pamir" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="cbar.pamir.PAMIR">
+<em class="property">class </em><code class="descclassname">cbar.pamir.</code><code class="descname">PAMIR</code><span class="sig-paren">(</span><em>max_iter=100000</em>, <em>C=1.0</em>, <em>valid_interval=10000</em>, <em>max_dips=20</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="headerlink" href="#cbar.pamir.PAMIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Passive Agressive Model for Image Retrieval</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; The maximum number of iterations.</li>
+<li><strong>C</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; The regularization constant.</li>
+<li><strong>valid_interval</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; The interval at which a validation of the current model state is
+performed.</li>
+<li><strong>max_dips</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; The maximum number of dips the algorithm is allowed to suffer.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="cbar.pamir.PAMIR.W">
+<code class="descname">W</code><a class="headerlink" href="#cbar.pamir.PAMIR.W" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>array, shape = [n_classes, n_features]</em> &#8211; The parameter matrix.</p>
+</dd></dl>
+
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>Grangier, D. and Bengio, S., 2008. <a class="reference external" href="https://infoscience.epfl.ch/record/146417/files/grangier-rr07-38.pdf">A discriminative kernel-based
+approach to rank images from text queries.</a>
+IEEE transactions on pattern analysis and machine intelligence, 30(8),
+pp.1371-1384.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>Chechik, G., Ie, E., Rehn, M., Bengio, S. and Lyon, D., 2008,
+October. <a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/33429.pdf">Large-scale content-based audio retrieval from text queries.</a>
+In Proceedings of the 1st ACM international conference on Multimedia
+information retrieval (pp. 105-112). ACM.</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>TBD</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">PAMIR</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="cbar.pamir.PAMIR._init_W">
+<code class="descname">_init_W</code><span class="sig-paren">(</span><em>n</em>, <em>m</em><span class="sig-paren">)</span><a class="headerlink" href="#cbar.pamir.PAMIR._init_W" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the parameter matrix <span class="math">\(W \in \mathbb{R}^{n      imes m}\)</span></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; First dimension for W. Number of classes.</li>
+<li><strong>m</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Second dimension for W. Number of features.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cbar.pamir.PAMIR.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>Q</em>, <em>X_val=None</em>, <em>Y_val=None</em>, <em>weights=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cbar.pamir.PAMIR.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em><em></em>) &#8211; Training data</li>
+<li><strong>Y</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_classes</em><em>]</em><em></em>) &#8211; Training labels</li>
+<li><strong>Q</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_queries</em><em>, </em><em>n_classes</em><em>]</em><em></em>) &#8211; Training queries</li>
+<li><strong>X_val</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em><em></em><em>, </em><em>optional</em>) &#8211; Validation data</li>
+<li><strong>Y_val</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_classes</em><em>]</em><em></em><em>, </em><em>optional</em>) &#8211; Validation labels</li>
+<li><strong>weights</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_queries</em><em>]</em><em></em><em>, </em><em>optional</em>) &#8211; Query weights</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> &#8211; The fitted model.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">PAMIR instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cbar.pamir.PAMIR.fit_partial">
+<code class="descname">fit_partial</code><span class="sig-paren">(</span><em>X</em>, <em>Y</em>, <em>Q</em>, <em>X_val=None</em>, <em>Y_val=None</em>, <em>weights=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cbar.pamir.PAMIR.fit_partial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model. Repeated calls to this method will cause training
+to resume from the current model state.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em><em></em>) &#8211; Training data</li>
+<li><strong>Y</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_classes</em><em>]</em><em></em>) &#8211; Training labels</li>
+<li><strong>Q</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_queries</em><em>, </em><em>n_classes</em><em>]</em><em></em>) &#8211; Training queries</li>
+<li><strong>X_val</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em><em></em><em>, </em><em>optional</em>) &#8211; Validation data</li>
+<li><strong>Y_val</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_classes</em><em>]</em><em></em><em>, </em><em>optional</em>) &#8211; Validation labels</li>
+<li><strong>weights</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_queries</em><em>]</em><em></em><em>, </em><em>optional</em>) &#8211; Query weights</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> &#8211; The fitted model.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">PAMIR instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cbar.pamir.PAMIR.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>Q</em>, <em>X_test</em><span class="sig-paren">)</span><a class="headerlink" href="#cbar.pamir.PAMIR.predict" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em><em></em>) &#8211; Training data</li>
+<li><strong>Y</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_classes</em><em>]</em><em></em>) &#8211; Training labels</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> &#8211; This model</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)">object</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="datasets.html" class="btn btn-neutral float-right" title="Datasets" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="loreta.html" class="btn btn-neutral" title="LoretaWARP" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, David Schwertfeger.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

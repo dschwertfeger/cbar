@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Datasets &mdash; CBAR 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="CBAR 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Model evaluation" href="crossval.html"/>
+        <link rel="prev" title="PAMIR" href="pamir.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CBAR
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Content</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loreta.html">LoretaWARP model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pamir.html">PAMIR model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cal500">CAL500</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cal10k">CAL10k</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#freesound">Freesound</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="crossval.html">Model evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">CBAR</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Datasets</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/datasets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="datasets">
+<span id="id1"></span><h1>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="cal500">
+<h2>CAL500<a class="headerlink" href="#cal500" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="cbar.datasets.fetch_cal500">
+<code class="descclassname">cbar.datasets.</code><code class="descname">fetch_cal500</code><span class="sig-paren">(</span><em>data_home=None</em>, <em>download_if_missing=True</em>, <em>codebook_size=512</em><span class="sig-paren">)</span><a class="headerlink" href="#cbar.datasets.fetch_cal500" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loader for the CAL500 dataset <a class="footnote-reference" href="#id3" id="id2">[1]</a>.</p>
+<p>This dataset consists of 502 western pop songs, performed by 499 unique
+artists. Each song is tagged by at least three people using a standard
+survey and a fixed tag vocabulary of 174 <em>musical concepts</em>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This utility downloads a ~1GB file to your home directory. This might
+take a few minutes, depending on your bandwidth.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data_home</strong> (<em>optional</em>) &#8211; Specify a download and cache folder for the datasets. By default
+(<code class="docutils literal"><span class="pre">None</span></code>) all data is stored in subfolders of <code class="docutils literal"><span class="pre">~/cbar_data</span></code>.</li>
+<li><strong>download_if_missing</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If <code class="docutils literal"><span class="pre">False</span></code>, raise a <code class="docutils literal"><span class="pre">IOError</span></code> if the data is not locally available
+instead of trying to download the data from the source site.
+Defaults to <code class="docutils literal"><span class="pre">True</span></code>.</li>
+<li><strong>codebook_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) &#8211; The codebook size. Defaults to 512.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>X</strong> (<em>pd.DataFrame, shape = [502, codebook_size]</em>) &#8211; Each row corresponds to a preprocessed song, represented as a sparse
+codebook vector.</li>
+<li><strong>Y</strong> (<em>pd.DataFrame, shape = [502, 174]</em>) &#8211; Tags associated with each song in binary indicator format.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The CAL500 dataset is downloaded from UCSD&#8217;s <a class="reference external" href="http://calab1.ucsd.edu/~datasets/cal500/">Computer Audition
+Laboratory&#8217;s datasets page</a>.</p>
+<p>The raw dataset consists of about 10,000 39-dimensional features vectors
+per minute of audio content. The feature vectors were created by:</p>
+<ol class="arabic simple">
+<li>Sliding a half-overlapping short-time window of 12 milliseconds over
+each song&#8217;s waveform data.</li>
+<li>Extracting the 13 mel-frequency cepstral coefficients.</li>
+<li>Appending the instantaneous first-order and second-order derivatives.</li>
+</ol>
+<p>Each song is represented by exactly 10,000 randomly subsampled,
+real-valued feature vectors as a <em>bag-of-frames</em>
+<span class="math">\(\mathcal{X} = \{\vec{x}_1, \ldots, \vec{x}_T\} \in
+\mathbb{R}^{d \times T}\)</span>, where <span class="math">\(d = 39\)</span> and <span class="math">\(T = 10000\)</span>.</p>
+<p>The <em>bag-of-frames</em> features for each song are further preprocessed into
+one <em>k</em>-dimensional feature vector with the following procedure:</p>
+<ol class="arabic simple">
+<li><strong>Encode feature vectors as code vectors.</strong>
+Each feature vector <span class="math">\(\vec{x}_t \in \mathbb{R}^d\)</span> is encoded as a
+code vector <span class="math">\(\vec{c}_t \in \mathbb{R}^k\)</span> according to a
+pre-defined codebook <span class="math">\(C \in \mathbb{R}^{d \times k}\)</span>. The
+intermediate representation for the encoded audio file is
+<span class="math">\(\mathcal{X}_{enc} \in \mathbb{R}^{k \times T}\)</span>.</li>
+<li><strong>Pool code vectors into one compact vector.</strong>
+The encoded frame vectors are pooled together into a single compact
+vector. An audio file <span class="math">\(x\)</span> can now be represented as a single
+<em>k</em>-dimensional vector <span class="math">\(\vec{x} \in \mathbb{R}^k\)</span>.</li>
+</ol>
+<p>Specifically, the k-means clustering algorithm is used to cluster all
+audio files&#8217; frames into <code class="docutils literal"><span class="pre">codebook_size</span></code> clusters in step 1. The
+resulting cluster centers correspond to the codewords in the codebook.
+Accordingly, the encoding step consists of assigning each frame vector
+to its closest cluster center.</p>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>D. Turnbull, L. Barrington, D. Torres, and G. Lanckriet, <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.297.2154&amp;rep=rep1&amp;type=pdf">Semantic
+Annotation and Retrieval of Music and Sound Effects.</a>
+IEEE Transactions on Audio, Speech, and Language Processing, vol. 16,
+no. 2, pp. 467-476, Feb. 2008.</td></tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="cal10k">
+<h2>CAL10k<a class="headerlink" href="#cal10k" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="cbar.datasets.fetch_cal10k">
+<code class="descclassname">cbar.datasets.</code><code class="descname">fetch_cal10k</code><span class="sig-paren">(</span><em>data_home=None</em>, <em>download_if_missing=True</em>, <em>codebook_size=512</em>, <em>fold=1</em><span class="sig-paren">)</span><a class="headerlink" href="#cbar.datasets.fetch_cal10k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loader for the CAL10k dataset <a class="footnote-reference" href="#id7" id="id4">[2]</a>.</p>
+<p>This dataset consists of 10,870 western pop songs, performed by 4,597
+unique artists. Each song is weakly annotated with 2 to 25 tags from a tag
+vocabulary of 153 genre tags and 475 acoustic tags but only tags
+associated with at least 30 songs are kept for the final tag vocabulary.</p>
+<p>The CAL10k dataset has predefined train-test-splits for a 5-fold
+cross-validation</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This utility downloads a ~2GB file to your home directory. This might
+take a few minutes, depending on your bandwidth.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data_home</strong> (<em>optional</em>) &#8211; Specify a download and cache folder for the datasets. By default
+(<code class="docutils literal"><span class="pre">None</span></code>) all data is stored in subfolders of <code class="docutils literal"><span class="pre">~/cbar_data</span></code>.</li>
+<li><strong>download_if_missing</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If <code class="docutils literal"><span class="pre">False</span></code>, raise a <code class="docutils literal"><span class="pre">IOError</span></code> if the data is not locally available
+instead of trying to download the data from the source site.
+Defaults to <code class="docutils literal"><span class="pre">True</span></code>.</li>
+<li><strong>codebook_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) &#8211; The codebook size. Defaults to 512.</li>
+<li><strong>fold</strong> (int, <span class="math">\(\in \{1, ..., 5\}\)</span>) &#8211; The specific train-test-split to load. Defaults to 1.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>X_train</strong> (<em>array-like, shape = [n_train_samples, codebook_size]</em>) &#8211; Training set songs. Each row corresponds to a preprocessed song,
+represented as a sparse codebook vector.</li>
+<li><strong>X_test</strong> (<em>array-like, shape = [n_test_samples, codebook_size]</em>) &#8211; Test set songs. Each row corresponds to a preprocessed song,
+represented as a sparse codebook vector.</li>
+<li><strong>Y_train</strong> (<em>array-like, shape = [n_train_samples, 581]</em>) &#8211; Training set tags associated with each training set song in
+binary indicator format.</li>
+<li><strong>Y_test</strong> (<em>array-like, shape = [n_test_samples, 581]</em>) &#8211; Test set tags associated with each test set song in
+binary indicator format.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The CAL10k dataset is downloaded from UCSD&#8217;s <a class="reference external" href="http://calab1.ucsd.edu/~datasets/cal10k/">Computer Audition
+Laboratory&#8217;s datasets page</a>.
+The annotations are the &#8220;corrected&#8221; annotations from <a class="footnote-reference" href="#id8" id="id6">[3]</a>, downloaded from
+the <a class="reference external" href="http://calab1.ucsd.edu/~datasets/cal10k/">CAL10k corrected metadata page</a>.</p>
+<p>The raw dataset consists of the 13 mel-frequency cepstral coefficients
+for each frame of each song. The acoustic data is preprocessed similar to
+the acoustic data in the CAL500 dataset (see notes in
+<a class="reference internal" href="#cbar.datasets.fetch_cal500" title="cbar.datasets.fetch_cal500"><code class="xref py py-func docutils literal"><span class="pre">cbar.datasets.fetch_cal500()</span></code></a>).</p>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td>D. Tingle, Y. E. Kim, and D. Turnbull, <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.306.9746&amp;rep=rep1&amp;type=pdf">Exploring automatic music
+annotation with acoustically-objective tags.</a>
+in Proceedings of the international conference on Multimedia
+information retrieval, 2010, pp. 55-62.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[3]</a></td><td>Y. Vaizman, B. McFee, and G. Lanckriet, <a class="reference external" href="http://acsweb.ucsd.edu/~yvaizman/papers/taslp_2014_accepted.pdf">Codebook-based audio
+feature representation for music information retrieval.</a>
+Audio, Speech, and Language Processing, IEEE/ACM Transactions on, vol.
+22, no. 10, pp. 1483-1493, 2014.</td></tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="freesound">
+<h2>Freesound<a class="headerlink" href="#freesound" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="cbar.datasets.load_freesound">
+<code class="descclassname">cbar.datasets.</code><code class="descname">load_freesound</code><span class="sig-paren">(</span><em>codebook_size</em>, <em>data_home=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cbar.datasets.load_freesound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loader for the Freesound dataset <a class="footnote-reference" href="#id11" id="id9">[4]</a>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You need to <a class="reference external" href="https://www.kaggle.com/dschwertfeger/freesound/">download the Freesound dataset from Kaggle</a> and unpack it into
+your home directory or the directory specified as <code class="docutils literal"><span class="pre">data_home</span></code> for
+this loader to work.</p>
+</div>
+<p>This dataset consists of 227,085 sounds. Each sound is at most 30 seconds
+long and annotated with tags from a tag vocabulary of 3,466 tags. The
+sounds&#8217; original tags were provided by the users who uploaded the sounds
+to <a class="reference external" href="http://www.freesound.org">Freesound</a>. The more than 50,000
+original tags were preprocessed to form a tag vocabulary of 3,466 tags.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>codebook_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>512</em><em>, </em><em>1024</em><em>, </em><em>2048</em><em>, </em><em>4096</em>) &#8211; The codebook size. The dataset is pre-encoded with codebook sizes of
+512, 1024, 2048, and 4096. If you want to experiment with other
+codebook-sizes, you need to download the orginal MFCCs, append the
+first-order and second-order derivatives and quantize the resulting
+frame-vectors specifying the desired <code class="docutils literal"><span class="pre">codebook_size</span></code> using
+<code class="xref py py-func docutils literal"><span class="pre">cbar.preprocess.quantize_mfccs()</span></code>.</li>
+<li><strong>data_home</strong> (<em>optional</em>) &#8211; Specify a home folder for the Freesound datasets. By default (<code class="docutils literal"><span class="pre">None</span></code>)
+the files are expected to be in <code class="docutils literal"><span class="pre">~/cbar_data/freesound/</span></code>, where
+<code class="docutils literal"><span class="pre">cbar_data</span></code> is the <code class="docutils literal"><span class="pre">data_home</span></code> directory.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>X</strong> (<em>pd.DataFrame, shape = [227085, codebook_size]</em>) &#8211; Each row corresponds to a preprocessed sound, represented as a sparse
+codebook vector.</li>
+<li><strong>Y</strong> (<em>pd.DataFrame, shape = [227085,]</em>) &#8211; Tags associated with each sound provided as a list of strings. Use
+<code class="xref py py-func docutils literal"><span class="pre">sklearn.preprocessing.MultiLabelBinarizer()</span></code> to transform tags
+into binary indicator format.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[4]</a></td><td>F. Font, G. Roma, and X. Serra, <a class="reference external" href="http://mtg.upf.edu/node/2797">Freesound technical demo</a> 2013, pp. 411-412.</td></tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="crossval.html" class="btn btn-neutral float-right" title="Model evaluation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pamir.html" class="btn btn-neutral" title="PAMIR" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, David Schwertfeger.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

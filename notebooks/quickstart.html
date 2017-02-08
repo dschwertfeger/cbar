@@ -1,0 +1,752 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quickstart guide &mdash; CBAR 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CBAR 0.1 documentation" href="../index.html"/>
+        <link rel="next" title="LoretaWARP" href="../loreta.html"/>
+        <link rel="prev" title="Welcome to CBAR’s documentation!" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CBAR
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Content</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Cross-validation">Cross-validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Start-cross-validation-with-the-CLI">Start cross-validation with the CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../loreta.html">LoretaWARP model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pamir.html">PAMIR model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../crossval.html">Model evaluation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quickstart guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Cross-validation">Cross-validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Start-cross-validation-with-the-CLI">Start cross-validation with the CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CBAR</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Quickstart guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/notebooks/quickstart.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="Quickstart-guide">
+<h1>Quickstart guide<a class="headerlink" href="#Quickstart-guide" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates how to build a simple content-based audio
+retrieval model and evaluate the retrieval accuracy on a small song
+dataset, CAL500. This dataset consists of 502 western pop songs,
+performed by 499 unique artists. Each song is tagged by at least three
+people using a standard survey and a fixed tag vocabulary of 174 musical
+concepts.</p>
+<p>This package includes a loading utility for getting and processing this
+dataset, which makes loading quite easy.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">cbar.datasets</span> <span class="kn">import</span> <span class="n">fetch_cal500</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">fetch_cal500</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Calling <code class="docutils literal"><span class="pre">fetch_cal500()</span></code> initally downloads the CAL500 dataset to a
+subfolder of your home directory. You can specify a different location
+using the <code class="docutils literal"><span class="pre">data_home</span></code> parameter (<code class="docutils literal"><span class="pre">fetch_cal500(data_home='path')</span></code>).
+Subsequents calls simply load the dataset.</p>
+<p>The raw dataset consists of about 10,000 39-dimensional features vectors
+per minute of audio content which were created by</p>
+<ol class="arabic simple">
+<li>Sliding a half-overlapping short-time window of 12 milliseconds over
+each song&#8217;s waveform data.</li>
+<li>Extracting the 13 mel-frequency cepstral coefficients.</li>
+<li>Appending the instantaneous first-order and second-order derivatives.</li>
+</ol>
+<p>Each song is, then, represented by exactly 10,000 randomly subsampled,
+real-valued feature vectors as a <em>bag-of-frames</em>. The <em>bag-of-frames</em>
+features are further processed into one <em>k</em>-dimensional feature vector
+by encoding the feature vectors using a codebook and pooling them into
+one compact vector.</p>
+<p>Specifically, <em>k</em>-means is used to cluster all frame vectors into <em>k</em>
+clusters. The resulting cluster centers correspond to the codewords in
+the codebook. Each frame vector is assigned to its closest cluster
+center and a song represented as the counts of frames assigned to each
+of the <em>k</em> cluster centers.</p>
+<p>By default, <code class="docutils literal"><span class="pre">fetch_cal500()</span></code> uses a codebook size of 512 but this size
+is easily modified with the <code class="docutils literal"><span class="pre">codebook_size</span></code> parameter
+(<code class="docutils literal"><span class="pre">fetch_cal500(codebook_size=1024)</span></code>).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[2]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>((502, 512), (502, 174))
+</pre></div>
+</div>
+</div>
+<p>Let&#8217;s split the data into training data and test data, fit the model on
+the training data, and evaluate it on the test data. Import and
+instantiate the model first.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">cbar.loreta</span> <span class="kn">import</span> <span class="n">LoretaWARP</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LoretaWARP</span><span class="p">(</span><span class="n">n0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">valid_interval</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Then split the data and fit the model using the training data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">cbar.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split_plus</span>
+
+<span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span>
+ <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">,</span>
+ <span class="n">Q_vec</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="o">=</span> <span class="n">train_test_split_plus</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="o">%</span><span class="k">time</span> model.fit(X_train, Y_train, Q_vec, X_test, Y_test)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+/Users/David/.virtualenvs/machine-learning/lib/python2.7/site-packages/scipy/linalg/basic.py:884: RuntimeWarning: internal gelsd driver lwork query error, required iwork dimension not returned. This is likely the result of LAPACK bug 0038, fixed in LAPACK 3.2.2 (released July 21, 2010). Falling back to &#39;gelss&#39; driver.
+  warnings.warn(mesg, RuntimeWarning)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+iter:        0, stepsize:    0.100, P10: 0.168, AP: 0.517, loss: 0.000
+iter:     1000, stepsize:    0.100, P10: 0.212, AP: 0.176, loss: 0.999
+iter:     2000, stepsize:    0.100, P10: 0.197, AP: 0.177, loss: 0.993
+iter:     3000, stepsize:    0.100, P10: 0.205, AP: 0.179, loss: 0.975
+iter:     4000, stepsize:    0.100, P10: 0.215, AP: 0.181, loss: 0.966
+iter:     5000, stepsize:    0.100, P10: 0.191, AP: 0.178, loss: 0.962
+iter:     6000, stepsize:    0.100, P10: 0.189, AP: 0.176, loss: 0.941
+iter:     7000, stepsize:    0.100, P10: 0.185, AP: 0.175, loss: 0.937
+iter:     8000, stepsize:    0.100, P10: 0.186, AP: 0.175, loss: 0.919
+iter:     9000, stepsize:    0.100, P10: 0.191, AP: 0.175, loss: 0.919
+iter:    10000, stepsize:    0.100, P10: 0.184, AP: 0.173, loss: 0.904
+iter:    11000, stepsize:    0.100, P10: 0.188, AP: 0.171, loss: 0.895
+iter:    12000, stepsize:    0.100, P10: 0.180, AP: 0.171, loss: 0.883
+iter:    13000, stepsize:    0.100, P10: 0.198, AP: 0.172, loss: 0.881
+2016-12-29 17:36:30,046 [MainThread  ] [WARNI]  max_dips reached, stopped at 14000 iterations.
+CPU times: user 11.5 s, sys: 375 ms, total: 11.9 s
+Wall time: 12 s
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[4]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>cbar.loreta.LoretaWARP(max_iter=100000, k=30, n0=0.1, n1=0.0, rank_thresh=0.1, lambda_=0.1, loss=&#39;warp&#39;, max_dips=10, valid_interval=1000)
+</pre></div>
+</div>
+</div>
+<p>Now, predict the scores for each query with all songs. Ordering the
+songs from highest to lowest score corresponds to the ranking.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="n">Y_score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Q_vec</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Evaluate the predictions.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">cbar.evaluation</span> <span class="kn">import</span> <span class="n">Evaluator</span>
+<span class="kn">from</span> <span class="nn">cbar.utils</span> <span class="kn">import</span> <span class="n">make_relevance_matrix</span>
+
+<span class="n">n_relevant</span> <span class="o">=</span> <span class="n">make_relevance_matrix</span><span class="p">(</span><span class="n">Q_vec</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">Evaluator</span><span class="p">()</span>
+<span class="n">evaluator</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">Q_vec</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Y_score</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">,</span> <span class="n">n_relevant</span><span class="p">)</span>
+<span class="n">evaluator</span><span class="o">.</span><span class="n">prec_at</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[6]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>defaultdict(list,
+            {1: [0.17682926829268295],
+             2: [0.14634146341463417],
+             3: [0.15040650406504064],
+             4: [0.1443089430894309],
+             5: [0.14339430894308947],
+             6: [0.14705284552845529],
+             7: [0.15779616724738676],
+             8: [0.17079703832752613],
+             9: [0.17630178087495163],
+             10: [0.17976432442895857],
+             11: [0.18487488121634463],
+             12: [0.19447699996480486],
+             13: [0.20046400076887883],
+             14: [0.20617928819148332],
+             15: [0.21475927527756794],
+             16: [0.22658865524719185],
+             17: [0.23965035741398727],
+             18: [0.24535472896305033],
+             19: [0.25569593647729272],
+             20: [0.25993391964659807]})
+</pre></div>
+</div>
+</div>
+<div class="section" id="Cross-validation">
+<h2>Cross-validation<a class="headerlink" href="#Cross-validation" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">cv</span></code> function in the <code class="docutils literal"><span class="pre">cross_validation</span></code> module offers an easy
+way to evaluate a retrieval method on multiple splits of the data. Let&#8217;s
+run the same experiment on three folds.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">cbar.cross_validation</span> <span class="kn">import</span> <span class="n">cv</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="n">cv</span><span class="p">(</span><span class="s1">&#39;cal500&#39;</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="n">n_folds</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;loreta&#39;</span><span class="p">,</span> <span class="n">n0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">valid_interval</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2016-12-29 17:36:30,273 [MainThread  ] [INFO ]  Running CV with 3 folds ...
+2016-12-29 17:36:58,463 [MainThread  ] [INFO ]  Validating fold 0 ...
+iter:        0, stepsize:    0.100, P10: 0.160, AP: 0.515, loss: 0.000
+iter:     1000, stepsize:    0.100, P10: 0.175, AP: 0.167, loss: 0.999
+iter:     2000, stepsize:    0.100, P10: 0.193, AP: 0.171, loss: 0.989
+iter:     3000, stepsize:    0.100, P10: 0.185, AP: 0.168, loss: 0.980
+iter:     4000, stepsize:    0.100, P10: 0.182, AP: 0.167, loss: 0.957
+iter:     5000, stepsize:    0.100, P10: 0.183, AP: 0.169, loss: 0.953
+iter:     6000, stepsize:    0.100, P10: 0.191, AP: 0.168, loss: 0.923
+iter:     7000, stepsize:    0.100, P10: 0.177, AP: 0.168, loss: 0.916
+iter:     8000, stepsize:    0.100, P10: 0.164, AP: 0.166, loss: 0.902
+iter:     9000, stepsize:    0.100, P10: 0.166, AP: 0.163, loss: 0.892
+iter:    10000, stepsize:    0.100, P10: 0.165, AP: 0.164, loss: 0.886
+iter:    11000, stepsize:    0.100, P10: 0.162, AP: 0.163, loss: 0.864
+2016-12-29 17:37:09,004 [MainThread  ] [WARNI]  max_dips reached, stopped at 12000 iterations.
+2016-12-29 17:37:09,165 [MainThread  ] [INFO ]  Validating fold 1 ...
+iter:        0, stepsize:    0.100, P10: 0.182, AP: 0.512, loss: 0.000
+iter:     1000, stepsize:    0.100, P10: 0.177, AP: 0.161, loss: 1.000
+iter:     2000, stepsize:    0.100, P10: 0.174, AP: 0.165, loss: 0.994
+iter:     3000, stepsize:    0.100, P10: 0.165, AP: 0.165, loss: 0.975
+iter:     4000, stepsize:    0.100, P10: 0.169, AP: 0.162, loss: 0.954
+iter:     5000, stepsize:    0.100, P10: 0.172, AP: 0.164, loss: 0.931
+iter:     6000, stepsize:    0.100, P10: 0.167, AP: 0.160, loss: 0.922
+iter:     7000, stepsize:    0.100, P10: 0.170, AP: 0.164, loss: 0.903
+iter:     8000, stepsize:    0.100, P10: 0.179, AP: 0.163, loss: 0.897
+iter:     9000, stepsize:    0.100, P10: 0.167, AP: 0.162, loss: 0.888
+iter:    10000, stepsize:    0.100, P10: 0.164, AP: 0.161, loss: 0.869
+iter:    11000, stepsize:    0.100, P10: 0.162, AP: 0.162, loss: 0.868
+2016-12-29 17:37:19,624 [MainThread  ] [WARNI]  max_dips reached, stopped at 12000 iterations.
+2016-12-29 17:37:19,781 [MainThread  ] [INFO ]  Validating fold 2 ...
+iter:        0, stepsize:    0.100, P10: 0.152, AP: 0.517, loss: 0.000
+iter:     1000, stepsize:    0.100, P10: 0.175, AP: 0.166, loss: 1.000
+iter:     2000, stepsize:    0.100, P10: 0.178, AP: 0.168, loss: 0.990
+iter:     3000, stepsize:    0.100, P10: 0.178, AP: 0.169, loss: 0.970
+iter:     4000, stepsize:    0.100, P10: 0.165, AP: 0.169, loss: 0.961
+iter:     5000, stepsize:    0.100, P10: 0.161, AP: 0.162, loss: 0.953
+iter:     6000, stepsize:    0.100, P10: 0.153, AP: 0.160, loss: 0.913
+iter:     7000, stepsize:    0.100, P10: 0.158, AP: 0.160, loss: 0.909
+iter:     8000, stepsize:    0.100, P10: 0.159, AP: 0.160, loss: 0.901
+iter:     9000, stepsize:    0.100, P10: 0.156, AP: 0.162, loss: 0.886
+iter:    10000, stepsize:    0.100, P10: 0.162, AP: 0.160, loss: 0.885
+iter:    11000, stepsize:    0.100, P10: 0.157, AP: 0.158, loss: 0.863
+iter:    12000, stepsize:    0.100, P10: 0.159, AP: 0.161, loss: 0.864
+iter:    13000, stepsize:    0.100, P10: 0.168, AP: 0.160, loss: 0.852
+2016-12-29 17:37:32,020 [MainThread  ] [WARNI]  max_dips reached, stopped at 14000 iterations.
+</pre></div></div>
+</div>
+<p>The cross-validation results including retrieval method parameters are
+written to a JSON file. For each dataset three separate result files for
+mean average precision (MAP), precision-at-<em>k</em>, and precision-at-10 as
+a function of relevant training examples are written to disk. Here are
+the mean average precision values of the last cross-validation run.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">cbar.settings</span> <span class="kn">import</span> <span class="n">RESULTS_DIR</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">RESULTS_DIR</span><span class="p">,</span> <span class="s1">&#39;cal500_ap.json&#39;</span><span class="p">)))</span>
+<span class="n">results</span><span class="p">[</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]][</span><span class="s1">&#39;precision&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[9]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>[0.15721287889679258, 0.1559216267824481, 0.16173633269857096]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Start-cross-validation-with-the-CLI">
+<h2>Start cross-validation with the CLI<a class="headerlink" href="#Start-cross-validation-with-the-CLI" title="Permalink to this headline">¶</a></h2>
+<p>This package comes with a simple CLI which makes it easy to start
+cross-validation experiments from the command line. The CLI enables you
+to specify a dataset and a retrieval method as well as additional
+options in one line.</p>
+<p>To start an experiment on the CAL500 dataset with the LORETA retrieval
+method, use the following command.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cbar crossval --dataset cal500 loreta
+</pre></div>
+</div>
+<p>This simple command uses all the default parameters for LORETA but you
+can specify all parameters as arguments to the <code class="docutils literal"><span class="pre">loreta</span></code> command. To
+see the available options for the <code class="docutils literal"><span class="pre">loreta</span></code> command, ask for help like
+this.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cbar crossval loreta --help
+Usage: cbar crossval loreta [OPTIONS]
+
+Options:
+  -n, --max-iter INTEGER        Maximum number of iterations
+  -i, --valid-interval INTEGER  Rank of parameter matrix W
+  -k INTEGER                    Rank of parameter matrix W
+  --n0 FLOAT                    Step size parameter 1
+  --n1 FLOAT                    Step size parameter 2
+  -t, --rank-thresh FLOAT       Threshold for early stopping
+  -l, --lambda FLOAT            Regularization constant
+  --loss [warp|auc]             Loss function
+  -d, --max-dips INTEGER        Maximum number of dips
+  -v, --verbose                 Verbosity
+  --help                        Show this message and exit.
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../loreta.html" class="btn btn-neutral float-right" title="LoretaWARP" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Welcome to CBAR’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, David Schwertfeger.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
