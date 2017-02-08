@@ -41,13 +41,13 @@ scikit-learn. See ``setup.py`` for version information.
 Documentation
 -------------
 
-http://www.dschwertfeger.github.io/cbar
+https://dschwertfeger.github.io/cbar
 
 
 On GitHub
 ---------
 
-http://www.github.com/dschwertfeger/cbar
+https://github.com/dschwertfeger/cbar
 
 
 References
