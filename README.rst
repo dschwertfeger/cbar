@@ -10,7 +10,7 @@ proven to work equally well for audio retrieval applications [2]_.
 The second approach combines on a Low-Rank Retraction Algorithm (LORETA) [3]_
 and the Weighted Approximate-Rank Pairwise loss (WARP loss) [4]_ to efficiently
 infer the model parameters. A similar algorithm, constrained to the context
-of finding similar items of the same kind (similary search), has been shown to
+of finding similar items of the same kind (similarity search), has been shown to
 work well on image and audio datasets [5]_.
 
 
