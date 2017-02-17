@@ -39,35 +39,6 @@ def binarize(query, mlb):
     return mlb.transform([query]).ravel()
 
 
-def binarize_targets(mlb, Y):
-    # NOTE: Not used anywhere
-    if is_multilabel(Y):
-        mlb.fit([Y.columns])
-        Y_bin = Y.values
-    else:
-        mlb.fit(Y)
-        Y_bin = mlb.transform(Y)
-    return mlb, Y_bin
-
-
-def ensure_dimension(y_true):
-    # NOTE: Not used anywhere
-    """Transform y_true
-
-    Parameters
-    ----------
-    y_true : array, shape = [n_samples] or [n_samples, len(query)]
-        True binary labels in binary label indicators. Shape depends on the
-        query terms.
-
-    Returns
-    -------
-    y_true : array, shape = [n_samples]
-        True binary labels in binary label indicators.
-    """
-    return y_true.all(axis=1) if y_true.ndim > 1 else y_true
-
-
 def inverse_document_frequency(Y):
     """Compute the inverse document frequency for each tag in the vocabulary.
 
@@ -131,64 +102,24 @@ def get_tag_counts(Y):
         return pd.DataFrame(Y.apply(pd.Series).stack()).groupby(0).size()
 
 
-def query_weights(bin_query_vec, idf):
-    """Represent a query as a vector of query weights.
+def query_weights(Q_bin, idf):
+    """Weight query terms based on their occurences in the tag data.
 
     Parameters
     ----------
-    bin_query_vec : ndarray, shape = [n_classes]
-        A binary query vector.
-        TODO: update
-            - Could also be a query matrix not just a single vector!
+    Q_bin : ndarray, shape = [n_queries, n_classes]
+        Queries in binary indicator format
     idf: ndarray, shape = [n_classes]
         Inverse document frequency
 
     Returns
     -------
-    query_weights : ndarray, shape = [n_samples]
+    query_weights : ndarray, shape = [n_queries, n_classes]
         Query vector weighted with the normalized inverse document
         frequency weighting scheme.
     """
     idf = np.asarray(idf)
-    return bin_query_vec * idf / np.sqrt(np.sum(np.square(idf)))
-
-
-def query_multinomial(query, mlb):
-    # NOTE: not used anywhere
-    # TODO-dsc: weight the query terms
-    bin_query_vector = mlb.transform([query]).ravel()
-    query_vec = bin_query_vector.astype(np.float64)
-    query_vec[query_vec == 0] = EPS
-    return query_vec / query_vec.sum()
-
-
-def semantic_multinomial(proba):
-    # NOTE: not used anywhere
-    return np.divide(proba, proba.sum(axis=1, keepdims=True))
-
-
-def kl_divergence(query, sound):
-    # NOTE: not used anywhere
-    return [stats.entropy(query, x) for x in sound]
-
-
-def score_query(query_vector, model_score):
-    """Score indicates the permutation of the dataset for ranking
-
-    Parameters
-    ----------
-    query_vector : ndarray, shape = [n_classes]
-        TBD
-
-    model_score: ndarray, shape = [n_classes]
-        TBD
-
-    Returns
-    -------
-    scored_query : ndarray, shape = [n_samples]
-        TBD
-    """
-    return np.sum(query_vector * model_score, axis=1)
+    return Q_bin * idf / np.sqrt(np.sum(np.square(idf)))
 
 
 def standardize(proba):
